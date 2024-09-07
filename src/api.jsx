@@ -37,6 +37,19 @@ export function USER_GET(token) {
     }
 }
 
+export function USER_POST(body) {
+    return {
+        url: API_URL + '/api/user',
+        options: {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body)
+        }
+    }
+}
+
 export function PHOTO_POST(formData, token) {
     return {
         url: API_URL + '/api/photo',
@@ -50,15 +63,12 @@ export function PHOTO_POST(formData, token) {
     }
 }
 
-export function USER_POST(body) {
+export function PHOTOS_GET({ page, total, user }) {
     return {
-        url: API_URL + '/api/user',
+        url: `${API_URL}/api/photo/?_page=${page}&total=${total}&user=${user}`,
         options: {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body)
+            method: 'GET',
+            cache: 'no-store'
         }
     }
 }

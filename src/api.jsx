@@ -37,6 +37,19 @@ export function USER_GET(token) {
     }
 }
 
+export function PHOTO_POST(formData, token) {
+    return {
+        url: API_URL + '/api/photo',
+        options: {
+            method: 'POST',
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+            body: formData
+        }
+    }
+}
+
 export function USER_POST(body) {
     return {
         url: API_URL + '/api/user',

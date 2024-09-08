@@ -18,8 +18,6 @@ const LoginCreate = () => {
 
     const { loading, error, request } = useFetch();
 
-    console.log(error)
-
     async function handleSubmit(event) {
         event.preventDefault();
         const { url, options } = USER_POST({

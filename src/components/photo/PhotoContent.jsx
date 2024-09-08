@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './PhotoContent.module.css'
 import { Link } from 'react-router-dom';
 import PhotoComments from './PhotoComments';
+import { UserContext } from '../../contexts/UserContext';
+import PhotoDelete from './PhotoDelete';
 
 const PhotoContent = ({ data }) => {
 
     const { photo, comments } = data;
+    const user = useContext(UserContext);
 
     return (
         <div className={styles.photo}>
@@ -15,7 +18,11 @@ const PhotoContent = ({ data }) => {
             <div className={styles.details}>
                 <div>
                     <p className={styles.author}>
-                        <Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>
+                        {/* Verifica se o usuário é o autor da postagem para que possa deletar */}
+                        {user.data && (user.data.username === photo.author ?
+                            <PhotoDelete id={photo.id} /> :
+                            <Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>
+                        )}
                         <span className={styles.preview}>{photo.acessos}</span>
                     </p>
                 </div>

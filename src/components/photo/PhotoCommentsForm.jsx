@@ -26,7 +26,7 @@ const PhotoCommentsForm = ({ id, setComments }) => {
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <textarea
-                value={comment}
+                value={comment === null ? '' : comment}
                 id={comment}
                 name={comment}
                 className={styles.textarea}

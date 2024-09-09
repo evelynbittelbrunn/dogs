@@ -5,7 +5,7 @@ import { COMMENT_POST } from '../../api';
 import Error from '../error/Error';
 import styles from './PhotoCommentsForm.module.css'
 
-const PhotoCommentsForm = ({ id, setComments }) => {
+const PhotoCommentsForm = ({ id, setComments, single }) => {
 
     const { request, error } = useFetch();
     const [comment, setComment] = useState(null);
@@ -24,7 +24,10 @@ const PhotoCommentsForm = ({ id, setComments }) => {
     }
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form
+            className={`${styles.form} ${single ? styles.single : ''}`}
+            onSubmit={handleSubmit}
+        >
             <textarea
                 value={comment === null ? '' : comment}
                 id={comment}
